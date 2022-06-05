@@ -1,9 +1,9 @@
 <div class="background">
   <app-header></app-header>
-  <div class="w-5/6 m-auto">
+  <div class="w-full lg:w-9/12 xl:w-8/12 h-max mx-auto">
     <app-snippet-code [customHeight]="'30rem'" [snippets]="response$"></app-snippet-code>
   </div>
-  <div class="m-auto w-3/6">
+  <div class="w-full lg:w-9/12 xl:w-8/12 h-max mx-auto">
     <app-user-comment [comment]="tempComment"></app-user-comment>
   </div>
 </div>
