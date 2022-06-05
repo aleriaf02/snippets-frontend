@@ -4,9 +4,10 @@
     class="rounded-tl-lg rounded-tr-lg scrollbar-thin scrollbar py-2"
     [style.background-color]="'rgb(39 39 39)'"
   >
-    <a [routerLink]="['/details-view', snippet.id]">
+    <a [routerLink]="['/details-view', snippet.id]" class="hover:text-lilac-light-palette hover:cursor-pointer duration-300">
       <h2
-        class="hover:text-lilac-light-palette hover:cursor-pointer duration-300 ml-3 my-2 text-2xl font-semibold text-white-slate-palette pl-2 truncate ...">{{snippet.name}}</h2>
+        class="ml-3 my-2 text-2xl font-semibold text-white-slate-palette pl-2 truncate ...">{{snippet.name}}</h2>
+      <p class="ml-3 my-2 text-sm text-white-slate-palette pl-2 truncate ...">{{snippet.description}}</p>
     </a>
   </div>
 
