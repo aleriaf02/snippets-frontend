@@ -1,7 +1,10 @@
-<div class="flex justify-end">
+<div class="flex justify-end container">
   <div *ngFor="let badge of badges;" class="ml-0.5">
-    <div class="flex flex-nowrap justify-around p-1 w-fit text-right duration-300 ease-in-out bg-gray-800"
-         [ngStyle]="{'background-color': badge.color}">
+    <div
+      class="flex flex-nowrap justify-around p-1 w-fit text-right duration-300 ease-in-out
+            bg-gray-800 rounded-full pr-2 border-2 border-white border-opacity-25
+            select-none"
+      [ngStyle]="{'background-color': badge.color}">
       <img alt="react icon" class="w-5 h-5 mr-2 ml-1 self-center" [src]="badge.icon"/>
       <span
         class="tracking-wide font-semibold leading-relaxed text-lg mr-1 text-white-palette text-sm">{{badge.name}}</span>

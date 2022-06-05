@@ -13,12 +13,14 @@ import { SnippetsService } from '../../../core/services/snippets/snippets.servic
 export class SnippetCodeComponent implements OnInit {
   @Input() snippets: any;
   @Input() customHeight: string = "'11rem'";
+  @Input() maxHeight!: string;
   files: File[] = [];
   selectedSnippet: number = 0;
   selectedItem: number = 0;
   content = '';
   count = 0;
   badges: string[] = [];
+  mobile: boolean = false;
 
   constructor(
     private snippetService: SnippetsService,

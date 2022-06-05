@@ -1,59 +1,74 @@
 <div *ngFor="let snippet of snippets;let f = index" class="p-4 drop-shadow-2xl tree-creation-view">
+
   <div
-    class="flex flex-row flex-nowrap rounded-tl-lg rounded-tr-lg scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette overflow-y-scroll">
+    class="rounded-tl-lg rounded-tr-lg scrollbar-thin scrollbar py-2"
+    [style.background-color]="'rgb(39 39 39)'"
+  >
+    <a [routerLink]="['/details-view', snippet.id]">
+      <h2
+        class="hover:text-lilac-light-palette hover:cursor-pointer duration-300 ml-3 my-2 text-2xl font-semibold text-white-slate-palette pl-2 truncate ...">{{snippet.name}}</h2>
+    </a>
+  </div>
+
+  <!--TABS-->
+  <div *ngIf="!mobile"
+       class="flex flex-row flex-nowrap scrollbar-thin
+              scrollbar overflow-y-scroll"
+       [style.background-color]="'rgb(39 39 39)'">
     <div *ngFor="let file of snippet.files; let i = index; let first = first; let last = last">
       <div>
         <div (click)="setSelected(snippet, file)"
-             [ngClass]="{'bg-gray-slate-palette text-white': file.activeTab===true, 'bg-white-palette': file.activeTab!=true, first: first, last: last }"
-             class="hover:bg-gray-light-palette hover:bg-opacity-50 duration-300
-       border-gray-light-palette border-b-2 border-r-2 border-inherit text-center align-middle bg-white-palette tracking-wider p-1 h-10 w-64 cursor-pointer pt-2 font-semibold">
+             [ngClass]="{
+              'text-white border-b-2 tab--active': file.activeTab,
+              'first': first,
+              'last': last
+             }"
+             class="tab hover:text-purple-500
+                  text-center align-middle border-b-purple-600
+                  tracking-wider px-4 py-1 h-10 w-auto cursor-pointer pt-2 font-semibold">
           {{file.name}}
         </div>
       </div>
     </div>
   </div>
+
+  <!--FILES-->
   <div *ngFor="let file of snippet.files; let first = first;let i = index; let last = last">
-    <div [ngClass]="{'active': file.activeTab===true , 'inactive': file.activeTab!=true}"
+
+    <div [ngClass]="{'active': file.activeTab===true || mobile , 'inactive': file.activeTab!=true && !mobile}"
+         [style.background-color]="'#2e3440'"
          class="bg-white-palette shadow-md p-3">
       <a [routerLink]="['/details-view', snippet.id]">
-        <h2
-          class="hover:text-lilac-light-palette hover:cursor-pointer duration-300 text-2xl font-bold text-gray-slate-palette pl-2 truncate ...">{{snippet.files[i].name}}</h2>
+        <h2 *ngIf="mobile"
+            class="hover:text-lilac-light-palette hover:cursor-pointer duration-300 text-2xl font-bold text-white-slate-palette pl-2 truncate ...">{{snippet.files[i].name}}</h2>
       </a>
-      <div class="p-2 relative">
+      <div class="relative">
         <div (click)="copyText(snippet.files[i].content)" class="cursor-pointer">
           <i aria-hidden="true"
-             class="fa fa-clipboard absolute hover:text-gray-100 hover:scale-110 duration-300 text-gray-light-palette right-7 top-3 text-base p-3"></i>
+             class="fa fa-clipboard absolute hover:text-gray-100 hover:scale-110 duration-300 text-gray-light-palette right-2 top-3 text-base p-3"></i>
         </div>
-        <pre class="overflow-hidden rounded"><code [highlight]="snippet.files[i].content" [style.height]=customHeight
-                                                   class="scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette overflow-y-scroll"></code></pre>
-      </div>
+        <pre class="overflow-hidden rounded">
+          <code [highlight]="snippet.files[i].content"
+                [style.min-height]="customHeight"
+                [style.max-height]="maxHeight ?? 'none'"
+                class="scrollbar-thin scrollbar overflow-y-scroll">
 
-    </div>
-    <div [ngClass]="{'active': file.activeTab===true, 'inactive': file.activeTab!=true}"
-         class="opacity-50 hover:opacity-100 duration-500">
-      <div
-        class="flex flex-col justify-around absolute bg-gray-light-palette rounded-br-3xl rounded-tr-3xl bg-opacity-50 h-64 top-14 right-0 -mr-4 w-8">
-        <div
-          class="h-1/2 hover:bg-gray-slate-palette hover:opacity-50  rounded-tr-3xl bg-green-400 opacity-70 hover:opacity-100 duration-300">
-          <div (click)="addCount(snippet)"
-               class="h-full hover:text-green-400 rounded-tr-3xl text-black-palette cursor-pointer hover:text-green-400 duration-300">
-            <i aria-hidden="true" class="fa fa-angle-double-up w-8 h-1/2 text-2xl text-center pt-6"></i>
-            <div class="pl-0.5 pt-5 h-1/2 w-8 h-1/2 text-center font-bold pt-1">{{snippet.upvotes}}</div>
-          </div>
-        </div>
-        <div (click)="subtractCount(snippet)"
-             class="h-1/2 hover:bg-gray-slate-palette hover:opacity-50  rounded-br-3xl bg-red-400 opacity-70 hover:opacity-100 duration-300">
-          <div
-            class="h-full hover:text-red-400 rounded-br-3xl text-black-palette cursor-pointer hover:text-red-400 duration-300">
-            <div class="pl-0.5 pt-6 h-1/2 w-8 h-1/2 text-center font-bold">{{snippet.downvotes}}</div>
-            <i aria-hidden="true" class="fa fa-angle-double-down w-8 h-1/2 text-2xl text-center pt-3.5"></i>
-
-          </div>
-        </div>
+          </code>
+        </pre>
       </div>
     </div>
   </div>
-  <div id="border">
+
+  <div id="border" class="rounded-b-lg">
     <app-topic-badge [badges]="snippet.topics"></app-topic-badge>
+
+    <div class="flex text-white-slate-palette ml-auto gap-2.5 mr-2 select-none">
+      <div (click)="subtractCount(snippet)" class="hover:text-red-500 cursor-pointer"><i
+        class="fas fa-arrow-down fa-xs"></i></div>
+      <div>{{snippet.upvotes + snippet.downvotes}}</div>
+      <div (click)="addCount(snippet)" class="hover:text-green-500 cursor-pointer"><i
+        class="fas fa-arrow-up fa-xs mr-2"></i></div>
+    </div>
   </div>
+
 </div>

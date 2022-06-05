@@ -1,13 +1,32 @@
 /* Custom styles for specification in the loop */
-.first{
-  border-top-left-radius: inherit;
+
+.tab {
+  background-color: #33343b;
+  color: whitesmoke;
+  &:hover {
+    background-color: #46474f;
+    color: whitesmoke;
+  }
+  &--active {
+    background-color: #41434b;
+  }
 }
+
+.first{
+  margin-left: 0.75rem;
+  border-top-left-radius: 0.5rem;
+  border-right: none;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
 .last{
   border-top-right-radius: 0.5rem;
   border-right: none;
   border-left-width: 0;
   border-right-width: 0;
 }
+
 .inactive{
   visibility: hidden;
   display:none;
@@ -19,14 +38,14 @@
 
 }
 .activeTab{
-  background-color:gray;
+  background-color:red;
 }
 #selected{
   background-color: #2CB67D;
 }
 
 code{
-  background-color: #4d4d4d;
+  background-color: #2e3440;
 }
 
 pre,code{
@@ -74,6 +93,13 @@ pre,code{
   border-right:10px solid blue;
 }
 
+pre {
+  display: flex;
+}
+
+code {
+  width: 100%;
+}
 
 @keyframes blink{
   to{opacity: .0;}
@@ -81,4 +107,10 @@ pre,code{
 
 ::selection{
   background: black;
+}
+
+#border {
+  background-color: rgb(39, 39, 39);
+  padding: 0.5rem;
+  display: flex;
 }
