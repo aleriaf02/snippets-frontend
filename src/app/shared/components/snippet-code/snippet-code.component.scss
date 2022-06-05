@@ -1,0 +1,84 @@
+/* Custom styles for specification in the loop */
+.first{
+  border-top-left-radius: inherit;
+}
+.last{
+  border-top-right-radius: 0.5rem;
+  border-right: none;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+.inactive{
+  visibility: hidden;
+  display:none;
+}
+.active{
+  visibility: visible;
+}
+.inactiveTab{
+
+}
+.activeTab{
+  background-color:gray;
+}
+#selected{
+  background-color: #2CB67D;
+}
+
+code{
+  background-color: #4d4d4d;
+}
+
+pre,code{
+  display: block;
+  overflow: auto;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+}
+
+
+/* Arrow css styles */
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+
+  border-bottom: 5px solid black;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 20px solid #f00;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+
+  border-left: 60px solid green;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+
+  border-right:10px solid blue;
+}
+
+
+@keyframes blink{
+  to{opacity: .0;}
+}
+
+::selection{
+  background: black;
+}

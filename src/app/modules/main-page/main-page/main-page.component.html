@@ -1,0 +1,11 @@
+<div class="w-12/12 h-max">
+  <div>
+    <app-header></app-header>
+    <div class="w-7/12 mx-auto my-3">
+      <app-main-search></app-main-search>
+    </div>
+    <div class="w-9/12 h-max mx-auto ">
+      <app-snippet-code [customHeight]="'11rem'" [snippets]="response$ | async"></app-snippet-code>
+    </div>
+  </div>
+</div>

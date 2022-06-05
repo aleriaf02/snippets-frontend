@@ -1,0 +1,3 @@
+<ng-select [(ngModel)]="selectedTopics" [multiple]="true" class="autoselect">
+  <ng-option *ngFor="let topic of topics | async" [value]="topic.id" class="autoselect">{{topic.name}}</ng-option>
+</ng-select>

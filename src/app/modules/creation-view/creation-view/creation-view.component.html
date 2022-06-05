@@ -1,0 +1,83 @@
+<div>
+  <div>
+    <app-header></app-header>
+    <form (ngSubmit)="submit()" [formGroup]="form" method="post" novalidate="">
+      <div class="flex flex-row">
+        <div class=" w-4/12 m-auto mt-32">
+          <div class=" p-3 pl-7 mb-3 bg-white-palette text-gray-slate-palette bg-opacity-70 font-semibold rounded font-aqum"><h3>Creation view</h3></div>
+          <div class="bg-white-palette p-1">
+          <div class="m-4 flex flex-col justify-between">
+            <input class="w-full p-3 m-0 bg-gray-slate-palette text-white-slate-palette font-semibold rounded"
+                   formControlName="name"
+                   id="name" name="name" placeholder="Name: " required type="text"/>
+
+            <textarea class="w-full p-5 h-32 bg-gray-slate-palette text-white-slate-palette font-semibold mt-5 rounded"
+                      formControlName="description" id="description" name="description" placeholder="Description:"
+                      required type="text"></textarea>
+
+            <select (change)="addSelectedTopics($event)" class="w-full bg-gray-slate-palette text-white-slate-palette font-semibold mt-5 rounded p-2">
+              <option value="default"> -- Select topics --</option>
+              <option *ngFor="let topic of topics" [value]="topic.id">{{topic.name}}</option>
+            </select>
+            <div
+              class="flex flex-wrap justify-around w-full h-56 p-10 font-semibold bg-gray-slate-palette rounded text-white-slate-palette mt-5 scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette overflow-y-scroll">
+              <div (click)="removeSelectedTopics($event)" *ngFor="let topic of selectedTopics"
+                   class="w-1/3 m-auto text-center align-middle bg-white-palette text-gray-slate-palette hover:bg-gray-light-palette duration-300 ease-in-out border-gray-slate-palette border-2 cursor-pointer truncate ...">{{topic.name}}</div>
+            </div>
+          </div>
+          </div>
+          <div class="w-full flex p-5">
+            <input [class.invalid-form]="!form.valid || validation===false" [class.valid-form]="form.valid" [disabled]="form.invalid || validation===false"
+                   class="m-auto w-full p-6 cursor-pointer text-white font-semibold tracking-widest bg-green-light-palette rounded-md hover:bg-green-slate-palette hover:duration-300 focus:outline-none duration-100 ease-in-out uppercase"
+                   type="submit" value="Create"/>
+          </div>
+        </div>
+        <div class=" w-6/12 m-auto mt-32">
+          <div
+            class="flex flex-row flex-nowrap rounded-tl-lg rounded-tr-lg scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette overflow-y-scroll">
+            <div *ngFor="let file of files; let i = index; let first = first; let last = last">
+              <div (click)="setSelected(i)">
+                <div
+                  [ngClass]="{'pl bg-gray-light-palette': i===selectedItem, 'bg-white-palette': i!=selectedItem, first: first, last: last}"
+                  class="hover:bg-gray-slate-palette hover:text-white-slate-palette cursor-pointer duration-300 h-12 w-64 border-gray-slate-palette border-b-2 border-r-2 border-inherit">
+
+                  <input (focusout)="setValues($event, selectedItem)" class="tracking-wider cursor-pointer font-semibold w-max h-full p-1 pt-2 text-center align-middle bg-inherit  bg-white-palette "
+                   placeholder="File"
+                    required type="text">
+                  <i (click)="removeFile(selectedItem)"
+                     class="far fa-minus-square relative text-2xl m-auto text-center align-middle cursor-pointer hover:text-red-400 duration-300 ease-in-out"></i>
+                </div>
+              </div>
+            </div>
+            <div (click)="addFiles()" class="hover:bg-green-light-palette duration-300 cursor-pointer
+       border-grey-palette rounded-full bg-white-palette font-semibold  align-middle pl-3 pr-3 pt-2 pb-1">
+              <i class='far fa-plus-square text-2xl mt-1'></i>
+            </div>
+          </div>
+          <div *ngFor="let file of files; let i = index; let first = first;let last = last">
+            <div [ngClass]="{'active': i===selectedItem, 'inactive': i!=selectedItem}"
+                 class="bg-white-palette shadow-md p-3 h-120">
+              <div class="p-2 relative h-120">
+                <div [ngClass]="{'inactive': editionMode === true, 'active': editionMode===false}">
+                  <i class="far fa-edit text-2xl absolute text-gray-light-palette right-7 top-7 text-base p-3"></i>
+                  <pre (click)="setEditionMode()"
+                       class="scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette overflow-y-scroll overflow-hidden rounded h-112 scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette overflow-y-scroll"><code
+                    [highlight]="currentFile.content"
+                    class="scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette overflow-y-scroll h-120">
+                   </code>
+                </pre>
+                </div>
+                <div [ngClass]="{'active': editionMode === true, 'inactive': editionMode===false}"
+                     class="overflow-hidden rounded preStyles codeStyles h-112">
+                  <textarea (focusout)="setHighlight($event, selectedItem)" [highlight]="currentFile.content"
+                            class="codeStyles scrollbar-thin scrollbar-thumb-lilac-light-palette scrollbar-track-gray-light-palette h-44 overflow-y-scroll w-full p-3 h-112"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

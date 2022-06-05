@@ -1,0 +1,36 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~highlight.js/styles/nord.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css';
+/* Font Families */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Open+Sans+Condensed:wght@300&display=swap');
+
+@font-face {
+  font-family: 'Aqum';
+  src: url('theme/fonts/Aqum.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Custom styles for background loop */
+html {
+  background: linear-gradient(-45deg, #2CB67D, #6B71D4, #5688B7, #419F9A);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+

@@ -1,0 +1,79 @@
+.first {
+  border-top-left-radius: inherit;
+}
+
+.last {
+  border-top-right-radius: 0.5rem;
+  border-right: none;
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+.h-120 {
+  height: 40rem;
+}
+.h-112 {
+  height: 37.5rem;
+}
+.h-104 {
+  height: 27.2rem;
+}
+.activeTab {
+  background-color: gray;
+}
+
+#selected {
+  background-color: #2CB67D;
+}
+
+.preStyles, .codeStyles, pre, code {
+  background-color: #4d4d4d;
+  display: block;
+  overflow: auto;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+  font-family: monospace;
+}
+
+.preStyles, .codeStyles {
+  background-color: #6c6c6c;
+  overflow: auto;
+}
+
+textarea {
+  border: none Transparent;
+  padding-top: 13.1px;
+  padding-left: 13.1px;
+  resize: none;
+}
+
+textarea, input, select{
+  outline: none;
+}
+.inactive {
+  visibility: hidden;
+  display: none;
+}
+
+.invalid-form {
+  background-color: #b3b3b3;
+  transition: background-color 1.5s ease;
+}
+
+.invalid-form:hover {
+  background-color: #838383;
+  transition: background-color 1.5s ease;
+}
+.active {
+  visibility: visible;
+}
+
+@keyframes blink {
+  to {
+    opacity: .0;
+  }
+}
+
+::selection {
+  background: black;
+}

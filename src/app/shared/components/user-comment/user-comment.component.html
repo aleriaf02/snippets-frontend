@@ -1,0 +1,12 @@
+
+<div class="flex flex-wrap h-fit m-2 bg-white-palette bg-opacity-70 ">
+  <div *ngIf="childStyles" class="w-6 bg-lilac-palette bg-opacity-30"></div>
+  <div class="p-4">
+    <img alt="User image" height="60" src="../../../../assets/images/logo.png" width="60">
+  </div>
+  <div class="p-3">
+    <div class="w-full"><strong>{{comment.mentions}}</strong></div>
+    <div class="text-black-palette">{{comment.content}}</div>
+  </div>
+</div>
+<div *ngIf="comment.childComment!=null"><app-user-comment [childStyles]=true [comment]="comment.childComment"></app-user-comment></div>

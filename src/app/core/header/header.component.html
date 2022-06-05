@@ -1,0 +1,44 @@
+<nav>
+  <div class="flex justify-between items-center p-3 bg-slate-800 bg-opacity-50">
+    <a href="/">
+      <div
+        class="ml-16 flex justify-between items-center transition ease-in-out delay-150 hover:drop-shadow-lg duration-300">
+        <img alt="snippet logo" height="50" src="../../../assets/images/logo.png" width="50">
+      </div>
+    </a>
+    <div></div>
+    <div class="mr-16">
+      <ng-container *ngIf="checkToken(); then notLogged; else loggedIn">
+      </ng-container>
+      <ng-template #notLogged>
+        <button class="btn text-violet-300 font-semibold text-lg tracking-wider
+                hover:text-white hover:scale-105 transition ease-in-out delay-150 hover:drop-shadow-lg
+                duration-300 font-aqum" onclick="window.location.href='/login'">Log in
+        </button>
+        <button class="btn draw-border tracking-wider font-aqum ml-6 text-lg"
+                onclick="window.location.href='/register'">Register
+        </button>
+      </ng-template>
+      <ng-template #loggedIn>
+        <div class="flex">
+          <button class="btn draw-border tracking-wider font-aqum mr-6 text-lg"
+                  onclick="window.location.href='/creation-view'">New snippet
+          </button>
+          <div class="group inline-block">
+            <div class="transition ease-in-out delay-150 hover:drop-shadow-lg hover:hue-rotate-90 duration-300">
+
+                <img alt="user icon" height="45" src="../../../assets/images/user.png" width="45">
+            </div>
+            <span>
+            </span>
+            <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
+  transition duration-1000 ease-in-out origin-top min-w-32 mt-4 -ml-4">
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100 cursor-pointer"  onclick="window.location.href='/profile-view'">Profile</li>
+              <a (click)="logOut()" class="drop-shadow-lg" href="/"><li class="rounded-sm px-3 py-1 hover:bg-gray-100 cursor-pointer">Log out</li></a>
+            </ul>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>
