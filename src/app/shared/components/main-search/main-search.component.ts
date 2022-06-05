@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {TopicService} from '../../../core/services/topics/topic.service';
 import {Topic} from '../../models/topic/topic.model';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-search',
@@ -12,7 +13,7 @@ export class MainSearchComponent implements OnInit {
   topics!: Observable<Topic[]>;
   selectedTopics = [];
 
-  constructor(private topicService: TopicService) {
+  constructor(private topicService: TopicService, private router: Router) {
   }
 
   ngOnInit() {
@@ -21,5 +22,9 @@ export class MainSearchComponent implements OnInit {
 
   setProperties(): void {
     this.topics = this.topicService.getObsTopics();
+  }
+
+  search() {
+    this.router.navigate(['/search']);
   }
 }

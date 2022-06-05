@@ -1,3 +1,21 @@
-<ng-select [(ngModel)]="selectedTopics" [multiple]="true" class="autoselect">
+<div class="my-4 w-9/12 md:w-9/12 lg:w-6/12 xl:w-4/12 m-auto">
+  <input type="search"
+         class="w-full bg-purple-white shadow rounded border-0 p-3 outline-none"
+         placeholder="Search by name, description, files, content..."
+  >
+</div>
+
+<ng-select [(ngModel)]="selectedTopics"
+           [multiple]="true"
+           placeholder="Filter by topic"
+           class="topicSelect w-9/12 md:w-9/12 lg:w-6/12 xl:w-4/12">
   <ng-option *ngFor="let topic of topics | async" [value]="topic.id" class="autoselect">{{topic.name}}</ng-option>
 </ng-select>
+
+<div class="w-9/12 md:w-9/12 lg:w-6/12 xl:w-4/12 m-auto mt-4">
+  <button (click)="search()" class="h-10 w-full
+        text-white rounded-lg bg-purple-700 hover:bg-purple-800">
+    Search
+  </button>
+</div>
+

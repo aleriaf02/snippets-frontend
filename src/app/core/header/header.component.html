@@ -11,11 +11,11 @@
       <ng-container *ngIf="checkToken(); then notLogged; else loggedIn">
       </ng-container>
       <ng-template #notLogged>
-        <button class="btn text-violet-300 font-semibold text-lg tracking-wider
+        <button class="btn text-violet-300 font-semibold tracking-wider
                 hover:text-white hover:scale-105 transition ease-in-out delay-150 hover:drop-shadow-lg
                 duration-300 font-aqum" onclick="window.location.href='/login'">Log in
         </button>
-        <button class="btn draw-border tracking-wider font-aqum ml-6 text-lg"
+        <button class="btn draw-border tracking-wider font-aqum ml-6 text"
                 onclick="window.location.href='/register'">Register
         </button>
       </ng-template>
