@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class MainSearchComponent implements OnInit {
   topics!: Observable<Topic[]>;
   selectedTopics = [];
+  searchText: string = '';
 
   constructor(private topicService: TopicService, private router: Router) {
   }
@@ -24,7 +25,15 @@ export class MainSearchComponent implements OnInit {
     this.topics = this.topicService.getObsTopics();
   }
 
+  searchTopics(name: string) {
+    this.topics = this.topicService.getObsTopicsByName(name);
+  }
+
   search() {
-    this.router.navigate(['/search']);
+    const searchParams = {
+      search: this.searchText,
+      topics: this.selectedTopics,
+    }
+    this.router.navigate(['search', searchParams]);
   }
 }

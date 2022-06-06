@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Snippet } from 'src/app/shared/models/snippet/snippet.model';
-import { ResponseWrapper } from 'src/app/shared/models/responseWrapper/response-wrapper.model';
-import { catchError, map } from 'rxjs/operators';
-import { FormGroup } from '@angular/forms';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Injectable, OnInit} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {environment} from 'src/environments/environment';
+import {Snippet} from 'src/app/shared/models/snippet/snippet.model';
+import {ResponseWrapper} from 'src/app/shared/models/responseWrapper/response-wrapper.model';
+import {catchError, map} from 'rxjs/operators';
+import {FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,8 @@ export class SnippetsService implements OnInit {
     this.responseWrapper$ = this.http.get<ResponseWrapper<Snippet>>(this.url);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   // Create
   create(form: FormGroup): Observable<Snippet> {
@@ -29,6 +30,14 @@ export class SnippetsService implements OnInit {
   getSnippets(): Observable<Snippet[]> {
     return this.http
       .get<ResponseWrapper<Snippet>>(`${this.url}`)
+      .pipe(map((res) => res.results));
+  }
+
+  // Search
+  search(params: any): Observable<Snippet[]> {
+    let searchParams = new HttpParams().set('search', params.search).set('topics', params.topics)
+    return this.http
+      .get<ResponseWrapper<Snippet>>(`${this.url}`, {params: searchParams})
       .pipe(map((res) => res.results));
   }
 

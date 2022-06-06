@@ -4,7 +4,7 @@
     class="rounded-tl-lg rounded-tr-lg scrollbar-thin scrollbar py-2"
     [style.background-color]="'rgb(39 39 39)'"
   >
-    <a [routerLink]="['/details-view', snippet.id]" class="hover:text-lilac-light-palette hover:cursor-pointer duration-300">
+    <a [routerLink]="['/snippets', snippet.id]" class="hover:text-lilac-light-palette hover:cursor-pointer duration-300">
       <h2
         class="ml-3 my-2 text-2xl font-semibold text-white-slate-palette pl-2 truncate ...">{{snippet.name}}</h2>
       <p class="ml-3 my-2 text-sm text-white-slate-palette pl-2 truncate ...">{{snippet.description}}</p>
@@ -39,7 +39,7 @@
     <div [ngClass]="{'active': file.activeTab===true || mobile , 'inactive': file.activeTab!=true && !mobile}"
          [style.background-color]="'#2e3440'"
          class="bg-white-palette shadow-md p-3">
-      <a [routerLink]="['/details-view', snippet.id]">
+      <a [routerLink]="['/snippets', snippet.id]">
         <h2 *ngIf="mobile"
             class="hover:text-lilac-light-palette hover:cursor-pointer duration-300 text-2xl font-bold text-white-slate-palette pl-2 truncate ...">{{snippet.files[i].name}}</h2>
       </a>
